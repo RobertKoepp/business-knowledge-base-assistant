@@ -1,10 +1,23 @@
 # Business Knowledge Base Assistant
 
+[🚀 Live Demo](https://kfcuawpntcsnhawyco4zkw.streamlit.app/) 
+| [View Source Code](https://github.com/RobertKoepp/business-knowledge-base-assistant)
+
 An AI-powered document search and question-answering application that helps businesses find information across internal documents.
 
 Built with Python, Streamlit, Sentence Transformers, and the Google Gemini API, this application combines semantic search with Retrieval-Augmented Generation (RAG) to retrieve relevant document passages and generate contextual answers with source references.
 
 ## Overview
+
+## Live Demo
+
+Try the deployed application:
+
+https://kfcuawpntcsnhawyco4zkw.streamlit.app/
+
+Upload the included sample business policies and ask questions
+to explore keyword search, semantic retrieval, and Gemini-powered
+answer generation.
 
 Businesses often store important information across employee handbooks, IT policies, expense procedures, and other documents. Finding specific information across these files can be time-consuming.
 
