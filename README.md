@@ -1,23 +1,35 @@
+
 # Business Knowledge Base Assistant
 
-[🚀 Live Demo](https://kfcuawpntcsnhawyco4zkw.streamlit.app/) 
-| [View Source Code](https://github.com/RobertKoepp/business-knowledge-base-assistant)
+[🚀 Live Demo](https://kfcuawpntcsnhawyco4zkw.streamlit.app/) | [GitHub Repository](https://github.com/RobertKoepp/business-knowledge-base-assistant)
 
-An AI-powered document search and question-answering application that helps businesses find information across internal documents.
+[![Python Tests](https://github.com/RobertKoepp/business-knowledge-base-assistant/actions/workflows/tests.yml/badge.svg)](https://github.com/RobertKoepp/business-knowledge-base-assistant/actions/workflows/tests.yml)
 
-Built with Python, Streamlit, Sentence Transformers, and the Google Gemini API, this application combines semantic search with Retrieval-Augmented Generation (RAG) to retrieve relevant document passages and generate contextual answers with source references.
+An AI-powered business document search and question-answering application built with Python, Streamlit, Sentence Transformers, and Google Gemini.
+
+The application combines keyword search, semantic retrieval, and Retrieval-Augmented Generation (RAG) to help users find information across business documents and generate contextual answers with supporting source references.
+
+## Application Screenshots
+
+### Application Interface
+
+Upload business documents, select a search method, and choose between extractive responses and Gemini-powered answers.
+
+![Business Knowledge Base Assistant Interface](assets/01-app-interface.png)
+
+### Gemini AI Answer Generation
+
+Gemini generates natural-language answers using relevant passages retrieved from uploaded documents.
+
+![Gemini AI Answer](assets/02-gemini-answer.png)
+
+### Supporting Sources and Document Retrieval
+
+Answers include references to retrieved documents and the supporting passages used to generate the response.
+
+![Supporting Sources](assets/03-supporting-sources.png)
 
 ## Overview
-
-## Live Demo
-
-Try the deployed application:
-
-https://kfcuawpntcsnhawyco4zkw.streamlit.app/
-
-Upload the included sample business policies and ask questions
-to explore keyword search, semantic retrieval, and Gemini-powered
-answer generation.
 
 Businesses often store important information across employee handbooks, IT policies, expense procedures, and other documents. Finding specific information across these files can be time-consuming.
 
@@ -29,12 +41,12 @@ Users can choose between keyword search, semantic search, extractive responses, 
 
 ### Document Processing
 - Upload PDF, DOCX, and TXT files.
-- Extract text and organize it into searchable chunks.
+- Extract text and organize content into searchable chunks.
 - Preserve document names, page numbers, and section identifiers.
 
 ### Keyword Search
 - Uses TF-IDF to rank passages based on matching words and phrases.
-- Provides a traditional search option without requiring an LLM.
+- Provides traditional keyword search without requiring an LLM.
 
 ### Semantic Search
 - Uses Sentence Transformers and the all-MiniLM-L6-v2 embedding model.
@@ -44,16 +56,16 @@ Users can choose between keyword search, semantic search, extractive responses, 
 
 ### Gemini AI Answer Generation
 - Integrates with the Google Gemini API.
-- Generates natural-language answers from retrieved document passages.
+- Generates natural-language answers using retrieved document passages.
 - Includes source-number references in generated answers.
-- Returns an insufficient-evidence response when the retrieved content cannot answer the question.
-- Validates that generated answers include references to available source numbers.
+- Returns an insufficient-evidence response when retrieved content cannot answer a question.
+- Checks that generated answers reference available source numbers.
 
 ### Reliability and Error Handling
 - Falls back to retrieved document passages when Gemini experiences recognized temporary service errors or rate limits.
 - Handles unsupported questions.
 - Preserves extractive responses without requiring an API call.
-- Includes automated tests for search, answer generation, and fallback behavior.
+- Includes automated tests for document processing, search, answer generation, and fallback behavior.
 
 ## How It Works
 
@@ -100,35 +112,45 @@ The application also supports extractive responses, which display retrieved docu
 | PyPDF | PDF text extraction |
 | python-docx | Word document processing |
 | pytest | Automated testing |
+| GitHub Actions | Continuous integration |
 
 ## Project Structure
 
 ```text
 business-knowledge-base-assistant/
-|
-|-- app.py
-|-- document_processor.py
-|-- search_engine.py
-|-- semantic_search.py
-|-- answer_generator.py
-|-- llm_answer_generator.py
-|-- gemini_fallback.py
-|
-|-- test_app.py
-|-- test_document_processor.py
-|-- test_search.py
-|-- test_search_modes.py
-|-- test_semantic_search.py
-|-- test_answer_generator.py
-|-- test_llm_answer_generator.py
-|-- test_gemini_fallback.py
-|
-|-- sample_employee_handbook.txt
-|-- sample_it_and_expense_policy.txt
-|
-|-- requirements.txt
-|-- .gitignore
-|-- README.md
+│
+├── .github/
+│   └── workflows/
+│       └── tests.yml
+│
+├── assets/
+│   ├── 01-app-interface.png
+│   ├── 02-gemini-answer.png
+│   └── 03-supporting-sources.png
+│
+├── app.py
+├── document_processor.py
+├── search_engine.py
+├── semantic_search.py
+├── answer_generator.py
+├── llm_answer_generator.py
+├── gemini_fallback.py
+│
+├── test_app.py
+├── test_document_processor.py
+├── test_search.py
+├── test_search_modes.py
+├── test_semantic_search.py
+├── test_answer_generator.py
+├── test_llm_answer_generator.py
+├── test_gemini_fallback.py
+│
+├── sample_employee_handbook.txt
+├── sample_it_and_expense_policy.txt
+│
+├── requirements.txt
+├── .gitignore
+└── README.md
 ```
 
 ## Installation
@@ -142,12 +164,10 @@ business-knowledge-base-assistant/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR-GITHUB-USERNAME/business-knowledge-base-assistant.git
+git clone https://github.com/RobertKoepp/business-knowledge-base-assistant.git
 
 cd business-knowledge-base-assistant
 ```
-
-Replace YOUR-GITHUB-USERNAME with your GitHub username.
 
 ### 2. Create a virtual environment
 
@@ -155,7 +175,7 @@ Replace YOUR-GITHUB-USERNAME with your GitHub username.
 python3.12 -m venv .venv
 ```
 
-Activate it on macOS or Linux:
+Activate the environment on macOS or Linux:
 
 ```bash
 source .venv/bin/activate
@@ -169,11 +189,11 @@ python -m pip install -r requirements.txt
 
 ### 4. Configure the Gemini API key
 
-Obtain a Gemini API key through Google AI Studio:
+Obtain an API key through Google AI Studio:
 
 https://aistudio.google.com/apikey
 
-Set your API key as an environment variable:
+Set the key as an environment variable:
 
 ```bash
 export GEMINI_API_KEY="your-api-key-here"
@@ -193,9 +213,27 @@ Streamlit will provide a local URL where the application can be accessed.
 
 The first semantic search may take longer because the embedding model needs to be downloaded and loaded.
 
-## Running Tests
+## Live Deployment
 
-The project includes automated tests covering document processing, keyword search, semantic retrieval, answer generation, application behavior, and Gemini fallback handling.
+The application is publicly deployed using Streamlit Community Cloud.
+
+**Live Application:**  
+https://kfcuawpntcsnhawyco4zkw.streamlit.app/
+
+The deployed application uses Streamlit secrets for the Gemini API key. Credentials are not stored in the source code.
+
+## Automated Testing
+
+The project includes automated tests covering:
+
+- Document processing and text extraction.
+- Keyword search.
+- Semantic search and retrieval.
+- Extractive answer generation.
+- Gemini answer generation.
+- Insufficient-evidence handling.
+- Application behavior.
+- Temporary API failure and fallback behavior.
 
 Run the complete test suite:
 
@@ -203,24 +241,13 @@ Run the complete test suite:
 python -m pytest -q
 ```
 
-Latest locally verified test result:
+Latest locally verified result:
 
 ```text
 89 passed
 ```
 
-Run individual test modules:
-
-```bash
-python -m pytest -q test_document_processor.py
-python -m pytest -q test_search.py
-python -m pytest -q test_semantic_search.py
-python -m pytest -q test_answer_generator.py
-python -m pytest -q test_llm_answer_generator.py
-python -m pytest -q test_gemini_fallback.py
-python -m pytest -q test_app.py
-python -m pytest -q test_search_modes.py
-```
+GitHub Actions automatically runs the test suite when changes are pushed to the main branch or submitted through a pull request.
 
 ## Example Use Cases
 
@@ -254,7 +281,6 @@ Questions that cannot be answered using retrieved document passages should recei
 - Persistent vector storage.
 - Multi-user access and authentication.
 - Document management and deletion.
-- Production deployment.
 - Expanded evaluation using realistic business document collections.
 
 ## Author
